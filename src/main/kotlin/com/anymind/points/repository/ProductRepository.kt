@@ -1,4 +1,6 @@
 package com.anymind.points.repository
 
-class ProductRepository {
-}
+import com.anymind.points.model.Product
+import org.springframework.data.jpa.repository.JpaRepository
+
+interface ProductRepository : JpaRepository<Product, Int>

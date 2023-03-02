@@ -1,4 +1,4 @@
 package com.anymind.points.exception
 
-class InsufficientBalanceException {
+class InsufficientBalanceException (message: String) : RuntimeException(message) {
 }

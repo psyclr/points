@@ -1,4 +1,8 @@
 package com.anymind.points.service
 
-class UserService {
+import com.anymind.points.model.User
+
+interface UserService {
+    fun getUserById(userId: Int): User
+    fun updateUserPoints(userId: Int, pointsToAdd: Double): User
 }
