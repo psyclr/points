@@ -23,9 +23,14 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
 
+    implementation ("com.graphql-java:graphql-spring-boot-starter:5.0.2")
+    implementation ("com.graphql-java:graphiql-spring-boot-starter:5.0.2")
+    implementation ("com.graphql-java:voyager-spring-boot-starter:5.0.2")
+    implementation ("com.graphql-java:graphql-java-tools:5.2.4")
+
     liquibaseRuntime("org.liquibase:liquibase-core:4.8.0")
     liquibaseRuntime("org.postgresql:postgresql")
-    liquibaseRuntime("org.yaml:snakeyaml:1.29")
+    liquibaseRuntime("org.yaml:snakeyaml:2.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

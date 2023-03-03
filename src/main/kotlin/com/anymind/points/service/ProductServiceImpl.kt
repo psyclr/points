@@ -2,6 +2,7 @@ package com.anymind.points.service
 
 import com.anymind.points.model.Product
 import com.anymind.points.repository.ProductRepository
+import com.anymind.points.service.intreface.ProductService
 import java.util.*
 
 class ProductServiceImpl(private val productRepository: ProductRepository) : ProductService {

@@ -1,0 +1,34 @@
+version: '3.7'
+
+services:
+  application:
+    container_name: sig-service
+    restart: "on-failure"
+    build: .
+    image: test-sig-service
+    command: "java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000 -jar app.jar"
+    environment:
+      POSTGRES_DB_HOST: db
+      POSTGRES_DB_PORT: 5432
+      POSTGRES_DB: sig-service
+      POSTGRES_USER: sig-service
+      POSTGRES_PASSWORD: plpass
+    ports:
+      - "8090:8080"
+    depends_on:
+      - db
+    links:
+      - db
+
+  db:
+    container_name: sig-db
+    image: postgres:13
+    restart: "no"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5435:5432"

@@ -5,22 +5,29 @@ import com.anymind.points.model.Order
 import com.anymind.points.model.PaymentMethod
 import com.anymind.points.model.Product
 import com.anymind.points.repository.OrderRepository
+import com.anymind.points.service.intreface.OrderService
+import com.anymind.points.service.intreface.UserService
 import java.time.LocalDateTime
 
 class OrderServiceImpl(
-        private val orderRepository: OrderRepository,
-        private val userService: UserService
+    private val orderRepository: OrderRepository,
+    private val userService: UserService
 ) : OrderService {
-    override fun createOrder(userId: Int, products: List<Product>, paymentMethod: PaymentMethod): Order {
+    override fun createOrder(
+        userId: Int,
+        products: List<Product>,
+        paymentMethod: PaymentMethod,
+        totalPrice: Double
+    ): Order {
         val order = Order(
-                id = 0,
-                userId = userId,
-                products = products,
-                paymentMethod = paymentMethod,
-                datetime = LocalDateTime.now()
+            id = 0,
+            userId = userId,
+            products = products,
+            paymentMethod = paymentMethod,
+            datetime = LocalDateTime.now(),
+            totalPrice = totalPrice
         )
 
-        val totalPrice = order.calculateTotalPrice()
         val user = userService.getUserById(userId)
         val pointsToAdd = order.calculatePoints()
 
@@ -33,7 +40,10 @@ class OrderServiceImpl(
         return orderRepository.save(order)
     }
 
-    override fun getOrdersByDateRange(startDateTime: LocalDateTime, endDateTime: LocalDateTime): List<Order> {
+    override fun getOrdersByDateRange(
+        startDateTime: LocalDateTime,
+        endDateTime: LocalDateTime
+    ): List<Order> {
         return orderRepository.findByDatetimeBetween(startDateTime, endDateTime)
     }
 

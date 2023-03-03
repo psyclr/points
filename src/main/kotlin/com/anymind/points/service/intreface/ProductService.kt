@@ -1,4 +1,4 @@
-package com.anymind.points.service
+package com.anymind.points.service.intreface
 
 import com.anymind.points.model.Product
 import java.util.*
