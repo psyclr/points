@@ -2,10 +2,10 @@ version: '3.7'
 
 services:
   application:
-    container_name: sig-service
+    container_name: service
     restart: "on-failure"
     build: .
-    image: test-sig-service
+    image: service
     command: "java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000 -jar app.jar"
     environment:
       POSTGRES_DB_HOST: db

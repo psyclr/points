@@ -1,6 +1,6 @@
 **acces_token for github registry** is this 
 
-`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`
+`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`
 
 add this to CR_PAT variable as so:
 
